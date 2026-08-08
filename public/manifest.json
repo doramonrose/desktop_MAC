@@ -1,0 +1,15 @@
+{
+  "short_name": "MR Car Rent",
+  "name": "MR Car Rent Chiang Mai - รถเช่าพร้อมคนขับเชียงใหม่",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0f172a",
+  "theme_color": "#f59e0b",
+  "display": "standalone"
+}

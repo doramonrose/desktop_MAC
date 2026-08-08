@@ -1,0 +1,6 @@
+{
+  "name": "MR Car Rent Chiang Mai",
+  "description": "บริการรถเช่าพร้อมคนขับเชียงใหม่ เที่ยวสบาย ปลอดภัย รับส่งสนามบิน เหมารถท่องเที่ยว และต่างจังหวัด",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
