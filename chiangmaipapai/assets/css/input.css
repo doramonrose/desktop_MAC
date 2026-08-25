@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-mist text-ink font-sans antialiased;
+    background-image:
+      radial-gradient(ellipse 120% 80% at 50% -20%, rgba(11, 63, 112, 0.06), transparent 50%),
+      linear-gradient(180deg, #f8fafc 0%, #f5f7fb 100%);
+    background-attachment: fixed;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-gold;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-semibold text-navy tracking-tight;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-content px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-brand px-5 py-3 text-sm font-semibold tracking-wide transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply btn bg-gold text-navy shadow-soft hover:-translate-y-0.5 hover:bg-gold-soft hover:shadow-lift focus-visible:outline-navy;
+  }
+
+  .btn-secondary {
+    @apply btn border border-navy/10 bg-white/90 text-navy shadow-sm backdrop-blur hover:-translate-y-0.5 hover:border-navy/25 hover:bg-white hover:shadow-card focus-visible:outline-navy;
+  }
+
+  .btn-navy {
+    @apply btn bg-navy text-white shadow-soft hover:-translate-y-0.5 hover:bg-navy-deep hover:shadow-lift focus-visible:outline-gold;
+  }
+
+  .btn-line {
+    @apply btn bg-line text-white shadow-soft hover:-translate-y-0.5 hover:brightness-105 hover:shadow-lift focus-visible:outline-navy;
+  }
+
+  .btn-line-soon {
+    @apply btn cursor-not-allowed border border-dashed border-line/40 bg-white/80 text-line;
+  }
+
+  .section {
+    @apply relative py-16 sm:py-20 lg:py-24;
+  }
+
+  .section-title {
+    @apply text-[1.65rem] leading-tight sm:text-3xl lg:text-[2.15rem];
+  }
+
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 3.5rem;
+    height: 3px;
+    margin-top: 0.85rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #f4a900, #ffc94a);
+  }
+
+  .section-title-center::after {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-lead {
+    @apply mt-4 max-w-2xl text-base leading-relaxed text-ink/65;
+  }
+
+  .card {
+    @apply rounded-brand-lg border border-navy/5 bg-white/95 p-5 shadow-card backdrop-blur-sm transition duration-300 sm:p-6;
+  }
+
+  .card-hover {
+    @apply card hover:-translate-y-1 hover:border-gold/25 hover:shadow-lift;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-navy/10 bg-white px-3.5 py-3.5 text-sm text-ink shadow-sm transition placeholder:text-ink/40 focus:border-gold/60 focus:ring-2 focus:ring-gold/20;
+  }
+
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-navy;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-xs font-semibold tracking-wide text-gold;
+  }
+
+  .site-header {
+    @apply sticky top-0 z-50 border-b border-navy/5 bg-white/85 backdrop-blur-xl transition-all duration-200;
+  }
+
+  .site-header.is-compact {
+    @apply bg-white/95 shadow-soft;
+  }
+
+  .site-header.is-compact .header-inner {
+    @apply py-2;
+  }
+
+  .mobile-bar {
+    @apply fixed inset-x-0 bottom-0 z-50 border-t border-navy/10 bg-white/90 shadow-[0_-8px_30px_rgba(6,43,79,0.08)] backdrop-blur-xl pb-[env(safe-area-inset-bottom)];
+  }
+
+  .has-mobile-bar {
+    @apply pb-24 md:pb-0;
+  }
+
+  .drawer {
+    @apply fixed inset-y-0 right-0 z-[60] w-[min(100%,20rem)] translate-x-full bg-white shadow-lift transition-transform duration-200;
+  }
+
+  .drawer.is-open {
+    @apply translate-x-0;
+  }
+
+  .drawer-backdrop {
+    @apply pointer-events-none fixed inset-0 z-[55] bg-navy/45 opacity-0 backdrop-blur-sm transition-opacity;
+  }
+
+  .drawer-backdrop.is-open {
+    @apply pointer-events-auto opacity-100;
+  }
+
+  .faq-item {
+    @apply transition duration-200;
+  }
+
+  .faq-item[open] {
+    @apply border-gold/20 shadow-soft;
+  }
+
+  .faq-item[open] .faq-chevron {
+    @apply rotate-180 text-gold;
+  }
+
+  .media-frame {
+    @apply overflow-hidden rounded-brand-lg shadow-lift ring-1 ring-white/15;
+  }
+
+  .media-frame img {
+    @apply transition duration-500;
+  }
+
+  .group:hover .media-frame img,
+  .card-hover:hover img {
+    @apply scale-[1.04];
+  }
+
+  .trust-pill {
+    @apply flex items-start gap-3 rounded-2xl border border-navy/5 bg-white/80 p-3 shadow-sm backdrop-blur;
+  }
+
+  .step-badge {
+    @apply inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-gold to-gold-soft text-sm font-bold text-navy shadow-glow;
+  }
+}

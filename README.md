@@ -7,6 +7,7 @@ Monorepo สำหรับโปรเจกต์บนเครื่อง M
 | Folder | Description |
 |--------|-------------|
 | [`mrcarrentcm/`](./mrcarrentcm) | เว็บไซต์ MR Car Rent Chiang Mai — รถเช่าพร้อมคนขับ |
+| [`chiangmaipapai/`](./chiangmaipapai) | เว็บไซต์ เชียงใหม่พาไป — รถเช่าพร้อมคนขับ |
 
 ## เพิ่มโปรเจกต์ใหม่
 
@@ -16,5 +17,6 @@ Monorepo สำหรับโปรเจกต์บนเครื่อง M
 desktop_MAC/
 ├── README.md
 ├── mrcarrentcm/
+├── chiangmaipapai/
 └── your-new-project/
 ```

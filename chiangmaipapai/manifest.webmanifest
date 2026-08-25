@@ -1,0 +1,30 @@
+{
+  "name": "เชียงใหม่พาไป",
+  "short_name": "เชียงใหม่พาไป",
+  "description": "รถพร้อมคนขับ เที่ยวเชียงใหม่และภาคเหนือ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8FAFC",
+  "theme_color": "#062B4F",
+  "lang": "th",
+  "icons": [
+    {
+      "src": "/assets/images/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/logo.png",
+      "sizes": "900x600",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
