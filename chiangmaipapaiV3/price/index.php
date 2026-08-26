@@ -97,13 +97,9 @@ require dirname(__DIR__) . '/components/header.php';
 
       <div class="price-card-grid">
         <?php foreach ($cards as $card): ?>
-          <?php
-            $from = price_from($card['group'], $card['id'], $prices);
-            $label = $from === null ? 'สอบถามรายละเอียด' : 'เริ่มต้น ' . format_baht($from);
-          ?>
           <article class="price-card" data-filters="<?= e(implode(' ', $card['filters'])) ?>">
             <h2><?= e($card['title']) ?></h2>
-            <p class="price-strong"><?= e($label) ?></p>
+            <?= render_price($card['group'], $card['id'], $prices) ?>
             <ul class="plain-ul">
               <li>จำนวนคน: <?= e((string) ($card['row']['people'] ?? 'ตามประเภทรถ')) ?></li>
               <li>เวลา: <?= e((string) ($card['row']['time'] ?? 'ตามโปรแกรม')) ?></li>

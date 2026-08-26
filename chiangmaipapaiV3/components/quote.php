@@ -13,7 +13,7 @@ $quoteLead = $content['how_quote']['lead'];
       <p><?= e($quoteLead) ?></p>
     </div>
 
-    <form id="quote-form" class="quote-form" novalidate>
+    <form id="quote-form" class="quote-form" novalidate data-line-id="<?= e((string) ($business['line_id'] ?? '')) ?>" data-line-url="<?= e((string) ($business['line_url'] ?? '')) ?>">
       <div class="quote-grid">
         <div>
           <label class="label" for="travel_date">วันที่เดินทาง</label>
@@ -62,11 +62,11 @@ $quoteLead = $content['how_quote']['lead'];
       <div class="quote-actions">
         <button type="submit" class="btn-primary" data-analytics="submit_quote"><?= e($content['how_quote']['button']) ?></button>
         <?php if ($lineReady): ?>
-          <a id="quote-line-btn" class="btn-line hidden" href="<?= e($business['line_url']) ?>" rel="noopener noreferrer" data-analytics="click_line" data-button-position="quick_quote">เปิด LINE</a>
+          <a id="quote-line-btn" class="btn-line" href="<?= e($business['line_url']) ?>" target="_blank" rel="noopener noreferrer" data-analytics="click_line" data-button-position="quick_quote">คุยผ่าน LINE @papai</a>
         <?php endif; ?>
       </div>
       <p id="quote-status" class="quote-status hidden" role="status" aria-live="polite"></p>
-      <p class="fine-print">ยังไม่ใช่การจอง คิวและยอดยืนยันโดยเจ้าหน้าที่หลังจากได้รับข้อความนี้</p>
+      <p class="fine-print">ยังไม่ใช่การจอง ข้อความจะเปิดในแชท LINE @papai ให้กดส่ง จากนั้นเจ้าหน้าที่จะยืนยันคิวและยอด</p>
     </form>
   </div>
 </section>

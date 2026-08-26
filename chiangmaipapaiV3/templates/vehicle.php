@@ -47,9 +47,10 @@ require __DIR__ . '/../components/header.php';
         <?php require __DIR__ . '/../components/breadcrumb.php'; ?>
         <h1><?= e($pageH1) ?></h1>
         <p class="hero-lead"><?= e($vehicle['lead']) ?></p>
-        <p class="price-strong"><?= e(price_label('vehicles', $vehicle['id'], $prices)) ?></p>
+        <?= render_price('vehicles', $vehicle['id'], $prices) ?>
         <div class="hero-cta">
           <a class="btn-primary" href="#quick-quote" data-analytics="open_quote" data-button-position="vehicle_hero">เช็กคิวและขอราคา</a>
+          <?php $linePosition = 'vehicle_hero'; require __DIR__ . '/../components/line-inquire.php'; ?>
           <a class="btn-navy" href="/price/" data-analytics="view_price" data-price-item="<?= e($vehicle['id']) ?>">ดูราคา</a>
         </div>
       </div>
@@ -81,6 +82,13 @@ require __DIR__ . '/../components/header.php';
       </aside>
     </div>
   </section>
+
+  <?php
+  $tripContext = 'vehicles';
+  $tripFeaturedId = null;
+  $tripIntro = 'ทริปเหล่านี้ใช้บ่อยกับรถพร้อมคนขับ จุดแวะเป็นตัวอย่าง ยอดจริงขึ้นกับจำนวนคน กระเป๋า และชั่วโมงรถของ' . $vehicle['name'];
+  require __DIR__ . '/../components/recommended-trips.php';
+  ?>
 
   <?php
   $faqHeading = 'คำถามเรื่อง' . $vehicle['name'] . 'พร้อมคนขับ';

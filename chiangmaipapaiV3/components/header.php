@@ -25,6 +25,9 @@ $items = nav_items();
 
     <div class="header-actions">
       <a class="btn-navy header-phone" href="<?= e(tel_href($business)) ?>" data-analytics="click_phone" data-button-position="header">โทร <?= e($business['phone']) ?></a>
+      <?php if ($lineReady): ?>
+        <a class="btn-line header-line" href="<?= e($business['line_url']) ?>" data-analytics="click_line" data-button-position="header" target="_blank" rel="noopener noreferrer">LINE @papai</a>
+      <?php endif; ?>
       <a class="btn-primary header-quote" href="<?= e($quoteHref) ?>" data-analytics="open_quote" data-button-position="header">เช็กคิวและขอราคา</a>
       <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-drawer" aria-label="เปิดเมนู">
         <span></span><span></span><span></span>
@@ -47,4 +50,7 @@ $items = nav_items();
     <a href="/faq/">คำถามที่พบบ่อย</a>
   </nav>
   <a class="btn-primary w-full" href="<?= e($quoteHref) ?>" data-analytics="open_quote" data-button-position="drawer">เช็กคิวและขอราคา</a>
+  <?php if ($lineReady): ?>
+    <a class="btn-line w-full" href="<?= e($business['line_url']) ?>" data-analytics="click_line" data-button-position="drawer" target="_blank" rel="noopener noreferrer">คุยผ่าน LINE @papai</a>
+  <?php endif; ?>
 </aside>

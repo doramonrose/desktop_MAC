@@ -35,7 +35,7 @@ declare(strict_types=1);
         <li><?= e($business['address']) ?></li>
         <li>
           <?php if ($lineReady): ?>
-            <a href="<?= e($business['line_url']) ?>" data-analytics="click_line" data-button-position="footer" rel="noopener noreferrer">LINE OA</a>
+            <a href="<?= e($business['line_url']) ?>" data-analytics="click_line" data-button-position="footer" target="_blank" rel="noopener noreferrer">LINE Official <?= e($business['line_id']) ?></a>
           <?php else: ?>
             LINE OA เร็ว ๆ นี้
           <?php endif; ?>

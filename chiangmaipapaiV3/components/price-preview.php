@@ -9,18 +9,38 @@ declare(strict_types=1);
     </div>
     <div class="price-preview-grid">
       <?php foreach ($vehicles as $vehicle): ?>
-        <article class="plain-card">
-          <h3><?= e($vehicle['name']) ?></h3>
-          <p class="price-strong"><?= e(price_label('vehicles', $vehicle['id'], $prices)) ?></p>
-          <p><?= e($vehicle['passengers']) ?></p>
-          <a class="text-link" href="/price/" data-analytics="view_price" data-price-item="<?= e($vehicle['id']) ?>">เช็กคิวราคานี้</a>
+        <article class="photo-card">
+          <div class="card-media">
+            <?= picture_tag($vehicle['image'], $vehicle['alt'], [
+                'width' => '640',
+                'height' => '400',
+                'sizes' => '(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw',
+            ]) ?>
+            <?= render_price_badge('vehicles', $vehicle['id'], $prices) ?>
+          </div>
+          <div class="photo-card-body">
+            <h3><?= e($vehicle['name']) ?></h3>
+            <?= render_price('vehicles', $vehicle['id'], $prices) ?>
+            <p><?= e($vehicle['passengers']) ?></p>
+            <a class="btn-navy card-cta" href="<?= e($vehicle['url']) ?>" data-analytics="view_price" data-price-item="<?= e($vehicle['id']) ?>">รายละเอียด</a>
+          </div>
         </article>
       <?php endforeach; ?>
-      <article class="plain-card">
-        <h3>รับส่งสนามบิน</h3>
-        <p class="price-strong"><?= e(price_label('trips', 'airport', $prices)) ?></p>
-        <p>ขึ้นกับจุดส่งและประเภทรถ</p>
-        <a class="text-link" href="/airport-transfer/" data-analytics="view_price" data-price-item="airport">เช็กคิวรถสนามบิน</a>
+      <article class="photo-card">
+        <div class="card-media">
+          <?= picture_tag('vehicles/chiangmai-private-driver-sedan', 'รถเก๋งพร้อมคนขับสำหรับรับส่งสนามบินเชียงใหม่', [
+              'width' => '640',
+              'height' => '400',
+              'sizes' => '(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw',
+          ]) ?>
+          <?= render_price_badge('trips', 'airport', $prices) ?>
+        </div>
+        <div class="photo-card-body">
+          <h3>รับส่งสนามบิน</h3>
+          <?= render_price('trips', 'airport', $prices) ?>
+          <p>ขึ้นกับจุดส่งและประเภทรถ</p>
+          <a class="btn-navy card-cta" href="/airport-transfer/" data-analytics="view_price" data-price-item="airport">รายละเอียด</a>
+        </div>
       </article>
     </div>
     <p class="center-link"><a class="btn-navy" href="/price/">ดูราคาตามเส้นทาง</a></p>

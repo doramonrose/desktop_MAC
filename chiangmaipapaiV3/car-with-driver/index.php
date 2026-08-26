@@ -39,7 +39,8 @@ require dirname(__DIR__) . '/components/header.php';
       <p class="hero-lead"><?= e($data['lead']) ?></p>
       <div class="hero-cta">
         <a class="btn-primary" href="#quick-quote" data-analytics="open_quote" data-button-position="service_hero">เช็กคิวและขอราคา</a>
-        <a class="btn-navy" href="<?= e(tel_href($business)) ?>" data-analytics="click_phone" data-button-position="service_hero">โทรสอบถาม</a>
+        <?php $linePosition = 'service_hero'; require dirname(__DIR__) . '/components/line-inquire.php'; ?>
+        <a class="btn-navy" href="<?= e(tel_href($business)) ?>" data-analytics="click_phone" data-button-position="service_hero">โทรสอบถาม <?= e($business['phone']) ?></a>
       </div>
     </div>
   </header>
@@ -56,14 +57,22 @@ require dirname(__DIR__) . '/components/header.php';
         <p><?= e($data['includes_intro']) ?></p>
       </div>
       <aside class="fact-card">
-        <p><strong>ครึ่งวัน</strong><br><?= e(price_label('trips', 'half_day', $prices)) ?></p>
-        <p><strong>เต็มวัน</strong><br><?= e(price_label('trips', 'full_day', $prices)) ?></p>
+        <p><strong>ครึ่งวัน</strong></p>
+        <?= render_price('trips', 'half_day', $prices) ?>
+        <p><strong>เต็มวัน</strong></p>
+        <?= render_price('trips', 'full_day', $prices) ?>
         <p>ยอดจริงขึ้นกับจุดรับ จุดแวะ และชั่วโมงรถ</p>
       </aside>
     </div>
   </section>
 
   <?php require dirname(__DIR__) . '/components/vehicle-selector.php'; ?>
+  <?php
+    $tripContext = 'car-with-driver';
+    $tripFeaturedId = null;
+    $tripIntro = 'ทริปด้านล่างเป็นตัวอย่างลำดับวันที่ใช้บ่อย จุดแวะปรับได้ตอนเช็กคิว ไม่ใช่แพ็กเกจล็อก ราคารวมคนขับและน้ำมันตามโปรแกรมที่ตกลง ไม่รวมค่าเข้าสถานที่';
+    require dirname(__DIR__) . '/components/recommended-trips.php';
+  ?>
   <?php require dirname(__DIR__) . '/components/popular-routes.php'; ?>
   <?php
     $faqHeading = 'คำถามเรื่องรถพร้อมคนขับ';

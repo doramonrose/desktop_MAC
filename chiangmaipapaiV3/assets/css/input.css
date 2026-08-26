@@ -128,6 +128,10 @@
     @apply hidden sm:inline-flex;
   }
 
+  .header-line {
+    @apply hidden lg:inline-flex;
+  }
+
   .header-quote {
     @apply hidden md:inline-flex;
   }
@@ -195,8 +199,28 @@
   .page-hero-media,
   .photo-frame,
   .route-card-media,
+  .vehicle-result-media,
+  .card-media {
+    @apply overflow-hidden bg-navy/5;
+  }
+
+  .hero-media,
+  .page-hero-media,
+  .photo-frame {
+    @apply rounded-md;
+  }
+
+  .card-media,
+  .route-card-media,
   .vehicle-result-media {
-    @apply overflow-hidden rounded-md bg-navy/5;
+    position: relative;
+    aspect-ratio: 16 / 10;
+  }
+
+  .card-media img,
+  .route-card-media img,
+  .vehicle-result-media img {
+    @apply h-full w-full object-cover;
   }
 
   .trust-bar {
@@ -281,13 +305,106 @@
     @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
   }
 
-  .route-card {
+  .trip-grid {
+    @apply grid gap-5 lg:grid-cols-2;
+  }
+
+  .trip-card {
+    @apply relative flex flex-col overflow-hidden rounded-md border border-navy/10 bg-white p-5;
+  }
+
+  .trip-card::before {
+    content: '';
+    @apply absolute inset-y-0 left-0 w-1.5 bg-gold;
+  }
+
+  .trip-card.is-featured {
+    @apply border-navy lg:col-span-2;
+  }
+
+  .trip-card-head {
+    @apply pl-2;
+  }
+
+  .trip-kicker {
+    @apply mb-2 inline-flex rounded-full bg-navy px-3 py-1 text-xs font-semibold text-gold;
+  }
+
+  .trip-card h3 {
+    @apply mb-2 text-xl;
+  }
+
+  .trip-card-head p:last-child {
+    @apply text-sm leading-relaxed text-ink/75;
+  }
+
+  .trip-stops-label {
+    @apply mt-5 pl-2 text-xs font-semibold uppercase tracking-wide text-navy;
+  }
+
+  .place-check-wrap {
+    @apply mt-5 rounded-md bg-white pl-2;
+  }
+
+  .place-check-title {
+    @apply mb-3 text-sm font-bold text-[#15803d];
+  }
+
+  .place-check {
+    @apply m-0 list-none space-y-1.5 p-0;
+  }
+
+  .place-check li {
+    @apply relative pl-5 text-sm font-medium leading-relaxed text-blue;
+  }
+
+  .place-check li::before {
+    content: '>';
+    @apply absolute left-0 font-bold text-blue;
+  }
+
+  .trip-stops {
+    @apply mt-2 list-none space-y-2 pl-2 text-sm leading-relaxed text-ink/80;
+  }
+
+  .trip-stops li {
+    @apply relative pl-6;
+  }
+
+  .trip-stops li::before {
+    content: '';
+    @apply absolute left-0 top-1.5 h-2.5 w-2.5 rounded-full bg-gold;
+  }
+
+  .trip-card-meta {
+    @apply mt-auto pl-2 pt-4;
+  }
+
+  .trip-hours {
+    @apply mt-2 text-xs leading-relaxed text-ink/55;
+  }
+
+  .trip-card-cta {
+    @apply mt-4 flex flex-col gap-3 pl-2 sm:flex-row sm:flex-wrap;
+  }
+
+  .route-card,
+  .photo-card {
     @apply overflow-hidden rounded-md border border-navy/10 bg-white no-underline text-ink;
   }
 
   .route-card-body,
+  .photo-card-body,
   .vehicle-result {
     @apply p-4;
+  }
+
+  .photo-card-body h3 {
+    @apply mb-1;
+  }
+
+  .card-cta {
+    @apply mt-4 w-full;
   }
 
   .vehicle-result {
@@ -324,6 +441,34 @@
     @apply text-xl;
   }
 
+  .price-display {
+    @apply my-2 inline-flex flex-wrap items-baseline gap-1 rounded-md bg-gold px-2.5 py-1 text-sm font-semibold text-navy;
+  }
+
+  .price-kicker,
+  .price-amount,
+  .price-unit {
+    @apply text-sm font-semibold text-navy;
+  }
+
+  .price-display.is-ask {
+    @apply bg-navy/5 text-ink/70;
+  }
+
+  .price-badge {
+    @apply absolute bottom-3 left-3 z-10 inline-flex items-baseline gap-1 rounded-md bg-gold px-2 py-1 text-sm font-semibold text-navy;
+  }
+
+  .price-badge-kicker,
+  .price-badge-amount,
+  .price-badge-unit {
+    @apply text-sm font-semibold;
+  }
+
+  .price-card .price-display {
+    @apply px-2.5 py-1;
+  }
+
   .text-link {
     @apply mt-2 inline-block text-sm font-medium;
   }
@@ -332,16 +477,58 @@
     @apply mt-8 text-center;
   }
 
-  .steps {
-    @apply grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-4;
+  .why-card {
+    @apply relative overflow-hidden rounded-md border border-navy/10 bg-white px-5 pb-5 pt-6;
   }
 
-  .steps li {
-    @apply flex gap-3 rounded-md border border-navy/10 bg-white p-4;
+  .why-card::before {
+    content: '';
+    @apply absolute inset-x-0 top-0 h-1 bg-gold;
+  }
+
+  .why-card.is-featured {
+    @apply border-navy bg-navy text-white;
+  }
+
+  .why-card.is-featured h3,
+  .why-card.is-featured p {
+    @apply text-white;
+  }
+
+  .why-card.is-featured p {
+    @apply text-white/80;
+  }
+
+  .why-icon {
+    @apply mb-4 inline-flex h-12 w-12 items-center justify-center rounded-md bg-navy text-gold;
+  }
+
+  .why-card.is-featured .why-icon {
+    @apply bg-gold text-navy;
+  }
+
+  .why-icon-svg {
+    @apply h-6 w-6;
+  }
+
+  .why-card h3 {
+    @apply mb-2 text-lg leading-snug;
+  }
+
+  .steps {
+    @apply relative grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-4;
+  }
+
+  .step-card {
+    @apply relative flex flex-col rounded-md border border-navy/10 bg-white p-5;
   }
 
   .step-n {
-    @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-semibold text-white;
+    @apply mb-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-gold text-base font-bold text-navy;
+  }
+
+  .step-card h3 {
+    @apply mb-2;
   }
 
   .photo-grid {
@@ -350,6 +537,10 @@
 
   .photo-wide {
     @apply mt-4;
+  }
+
+  .photo-credit {
+    @apply mt-2 px-1 text-xs text-ink/55;
   }
 
   .faq-wrap {

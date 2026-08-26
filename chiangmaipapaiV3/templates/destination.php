@@ -12,7 +12,6 @@ $faqItems = $route['faq'];
 $quoteDestination = $route['quote_destination'];
 $quoteTrip = $route['quote_trip'];
 $relatedItems = $route['related'];
-$priceLabel = price_label('destinations', $route['price_id'], $prices);
 
 $extraSchemas = array_filter([
     schema_organization($business, $app),
@@ -36,7 +35,8 @@ require __DIR__ . '/../components/header.php';
         <p class="hero-lead"><?= e($route['lead']) ?></p>
         <div class="hero-cta">
           <a class="btn-primary" href="#quick-quote" data-analytics="open_quote" data-button-position="route_hero">เช็กคิวและขอราคา</a>
-          <a class="btn-navy" href="<?= e(tel_href($business)) ?>" data-analytics="click_phone" data-button-position="route_hero">โทรสอบถาม</a>
+          <?php $linePosition = 'route_hero'; require __DIR__ . '/../components/line-inquire.php'; ?>
+          <a class="btn-navy" href="<?= e(tel_href($business)) ?>" data-analytics="click_phone" data-button-position="route_hero">โทรสอบถาม <?= e($business['phone']) ?></a>
         </div>
       </div>
       <div class="page-hero-media">
@@ -57,14 +57,17 @@ require __DIR__ . '/../components/header.php';
         <h2>สรุปเส้นทาง</h2>
         <p><?= e($route['summary']) ?></p>
         <h2>ราคาเริ่มต้น</h2>
-        <p class="price-strong"><?= e($priceLabel) ?></p>
+        <?= render_price('destinations', $route['price_id'], $prices) ?>
         <p><?= e($prices['destinations'][$route['price_id']]['note'] ?? $prices['disclaimer']) ?></p>
         <ul class="include-list">
           <li><strong>รวม</strong> <?= e(implode(' · ', $prices['includes'])) ?></li>
           <li><strong>ไม่รวม</strong> <?= e(implode(' · ', $prices['excludes'])) ?></li>
           <li><strong>OT</strong> <?= e($prices['ot_note']) ?></li>
         </ul>
-        <a class="btn-primary" href="#quick-quote" data-analytics="view_price" data-price-item="<?= e($route['id']) ?>">เช็กคิวราคานี้</a>
+        <div class="hero-cta">
+          <a class="btn-primary" href="#quick-quote" data-analytics="view_price" data-price-item="<?= e($route['id']) ?>">เช็กคิวราคานี้</a>
+          <?php $linePosition = 'route_price'; require __DIR__ . '/../components/line-inquire.php'; ?>
+        </div>
       </article>
       <aside class="fact-card">
         <p><strong>เวลาเดินทาง</strong><br><?= e($route['journey_time']) ?></p>
@@ -88,6 +91,13 @@ require __DIR__ . '/../components/header.php';
     </div>
   </section>
 
+  <?php
+  $tripContext = $route['id'];
+  $tripFeaturedId = $route['id'];
+  $tripIntro = 'จุดท่องเที่ยวตามโปรแกรมเป็นตัวอย่างที่แวะได้บ่อย เลือกตามเวลาที่มี ไม่ต้องแวะครบทุกแห่ง ราคารวมคนขับและน้ำมันตามที่ตกลง ไม่รวมค่าเข้าสถานที่';
+  require __DIR__ . '/../components/recommended-trips.php';
+  ?>
+
   <section class="section">
     <div class="container-page two-col">
       <div>
@@ -99,12 +109,12 @@ require __DIR__ . '/../components/header.php';
         </ol>
       </div>
       <div>
-        <h2>จุดแวะ</h2>
-        <ul class="plain-ul">
-          <?php foreach ($route['stops'] as $stop): ?>
-            <li><?= e($stop) ?></li>
-          <?php endforeach; ?>
-        </ul>
+        <?php
+        $places = $route['places'] ?? $route['stops'] ?? [];
+        $optionalPlaces = $route['optional_places'] ?? [];
+        $placeCheckTitle = 'ทริปแนะนำ สามารถปรับเปลี่ยนได้ตามเส้นทาง';
+        require __DIR__ . '/../components/place-checklist.php';
+        ?>
       </div>
     </div>
   </section>
@@ -134,7 +144,19 @@ require __DIR__ . '/../components/header.php';
     <div class="container-page">
       <h2>ภาพเส้นทาง</h2>
       <figure class="photo-frame photo-wide">
-        <?= picture_tag($route['image'], $route['alt'], ['width' => '1200', 'height' => '720', 'sizes' => '100vw']) ?>
+        <?= picture_tag($route['image'], $route['alt'], ['width' => '1200', 'height' => '800', 'sizes' => '100vw']) ?>
+        <?php if (!empty($route['photo_credit'])): ?>
+          <figcaption class="photo-credit">
+            <?php if (!empty($route['photo_credit_url'])): ?>
+              <a href="<?= e($route['photo_credit_url']) ?>" rel="noopener noreferrer"><?= e($route['photo_credit']) ?></a>
+            <?php else: ?>
+              <?= e($route['photo_credit']) ?>
+            <?php endif; ?>
+            <?php if (!empty($route['photo_license'])): ?>
+              · <?= e($route['photo_license']) ?>
+            <?php endif; ?>
+          </figcaption>
+        <?php endif; ?>
       </figure>
     </div>
   </section>

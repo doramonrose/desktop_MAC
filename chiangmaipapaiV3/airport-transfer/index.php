@@ -39,10 +39,11 @@ require dirname(__DIR__) . '/components/header.php';
       <?php require dirname(__DIR__) . '/components/breadcrumb.php'; ?>
       <h1><?= e($pageH1) ?></h1>
       <p class="hero-lead"><?= e($data['lead']) ?></p>
-      <p class="price-strong"><?= e(price_label('trips', 'airport', $prices)) ?></p>
+      <?= render_price('trips', 'airport', $prices) ?>
       <div class="hero-cta">
         <a class="btn-primary" href="#quick-quote" data-analytics="open_quote" data-button-position="airport_hero">เช็กคิวรถสนามบิน</a>
-        <a class="btn-navy" href="<?= e(tel_href($business)) ?>" data-analytics="click_phone" data-button-position="airport_hero">โทรสอบถาม</a>
+        <?php $linePosition = 'airport_hero'; require dirname(__DIR__) . '/components/line-inquire.php'; ?>
+        <a class="btn-navy" href="<?= e(tel_href($business)) ?>" data-analytics="click_phone" data-button-position="airport_hero">โทรสอบถาม <?= e($business['phone']) ?></a>
       </div>
     </div>
   </header>
@@ -84,6 +85,13 @@ require dirname(__DIR__) . '/components/header.php';
       </div>
     </div>
   </section>
+
+  <?php
+    $tripContext = 'airport';
+    $tripFeaturedId = 'city-half';
+    $tripIntro = 'ถ้าเวลาเที่ยวบินทัน สามารถต่อทริปสั้นหลังรับสนามบินได้ จุดและชั่วโมงต้องคุยตอนเช็กคิว ไม่ใช่ราคาสนามบินอย่างเดียว';
+    require dirname(__DIR__) . '/components/recommended-trips.php';
+  ?>
 
   <?php
     $faqHeading = 'คำถามรถรับส่งสนามบินเชียงใหม่';

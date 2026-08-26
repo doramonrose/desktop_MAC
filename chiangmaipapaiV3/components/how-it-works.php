@@ -9,12 +9,10 @@ declare(strict_types=1);
     </div>
     <ol class="steps">
       <?php foreach ($content['steps'] as $step): ?>
-        <li>
+        <li class="step-card">
           <span class="step-n"><?= e($step['n']) ?></span>
-          <div>
-            <h3><?= e($step['title']) ?></h3>
-            <p><?= e($step['text']) ?></p>
-          </div>
+          <h3><?= e($step['title']) ?></h3>
+          <p><?= e($step['text']) ?></p>
         </li>
       <?php endforeach; ?>
     </ol>

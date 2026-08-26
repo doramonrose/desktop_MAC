@@ -85,6 +85,36 @@ function price_label(string $group, string $id, array $prices, string $fallback 
     return $unit . ' ' . format_baht($from);
 }
 
+function render_price(string $group, string $id, array $prices, string $fallback = 'สอบถามรายละเอียด'): string
+{
+    $from = price_from($group, $id, $prices);
+    if ($from === null) {
+        return '<p class="price-display is-ask"><span class="price-amount">' . e($fallback) . '</span></p>';
+    }
+    $kicker = (string) ($prices[$group][$id]['unit'] ?? 'เริ่มต้น');
+    return '<p class="price-display">'
+        . '<span class="price-kicker">' . e($kicker) . '</span>'
+        . '<span class="price-row">'
+        . '<span class="price-amount">' . e(number_format($from)) . '</span>'
+        . '<span class="price-unit">บาท</span>'
+        . '</span>'
+        . '</p>';
+}
+
+function render_price_badge(string $group, string $id, array $prices): string
+{
+    $from = price_from($group, $id, $prices);
+    if ($from === null) {
+        return '';
+    }
+    $kicker = (string) ($prices[$group][$id]['unit'] ?? 'เริ่มต้น');
+    return '<span class="price-badge">'
+        . '<span class="price-badge-kicker">' . e($kicker) . '</span>'
+        . '<span class="price-badge-amount">' . e(number_format($from)) . '</span>'
+        . '<span class="price-badge-unit">บาท</span>'
+        . '</span>';
+}
+
 function current_path(): string
 {
     $uri = (string) ($_SERVER['REQUEST_URI'] ?? '/');
@@ -223,4 +253,46 @@ function sitemap_urls(array $app, array $routes, array $vehicles): array
         $urls[] = $base . $path;
     }
     return $urls;
+}
+
+/**
+ * @param array<string, array<string, mixed>> $trips
+ * @return list<array<string, mixed>>
+ */
+function trips_for_context(array $trips, string $context, ?string $featuredId = null): array
+{
+    $matched = [];
+    foreach ($trips as $trip) {
+        $showOn = $trip['show_on'] ?? [];
+        if (in_array($context, $showOn, true) || in_array('all', $showOn, true)) {
+            $matched[] = $trip;
+        }
+    }
+    if ($featuredId !== null) {
+        usort($matched, static function (array $a, array $b) use ($featuredId): int {
+            $score = static function (array $trip) use ($featuredId): int {
+                if (($trip['id'] ?? '') === $featuredId) {
+                    return 2;
+                }
+                if (($trip['route_id'] ?? '') === $featuredId) {
+                    return 1;
+                }
+                return 0;
+            };
+            return $score($b) <=> $score($a);
+        });
+    }
+    return $matched;
+}
+
+function trip_detail_url(array $trip, array $routes): string
+{
+    if (!empty($trip['detail_url'])) {
+        return (string) $trip['detail_url'];
+    }
+    $routeId = (string) ($trip['route_id'] ?? '');
+    if ($routeId !== '' && isset($routes[$routeId]['url'])) {
+        return (string) $routes[$routeId]['url'];
+    }
+    return '/car-with-driver/';
 }

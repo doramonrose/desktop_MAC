@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/icons.php';
 ?>
 <section class="section" aria-labelledby="why-heading">
   <div class="container-page">
@@ -8,8 +9,9 @@ declare(strict_types=1);
       <p>เราตั้งตัวเป็นเพื่อนร่วมทางท้องถิ่น ไม่ใช่รถถูกที่สุด และไม่ใช่โชเฟอร์หรู</p>
     </div>
     <div class="why-grid">
-      <?php foreach ($content['why'] as $item): ?>
-        <article class="plain-card">
+      <?php foreach ($content['why'] as $index => $item): ?>
+        <article class="why-card<?= $index === 0 ? ' is-featured' : '' ?>">
+          <div class="why-icon" aria-hidden="true"><?= brand_icon((string) $item['icon']) ?></div>
           <h3><?= e($item['title']) ?></h3>
           <p><?= e($item['text']) ?></p>
         </article>

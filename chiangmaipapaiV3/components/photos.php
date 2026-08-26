@@ -2,7 +2,7 @@
 declare(strict_types=1);
 $photos = [
     ['src' => 'vehicles/chiangmai-private-driver-suv', 'alt' => 'SUV พร้อมคนขับของเชียงใหม่พาไป'],
-    ['src' => 'routes/mae-kampong-private-car', 'alt' => 'รถส่วนตัวบนเส้นทางแม่กำปอง'],
+    ['src' => 'routes/mae-kampong-private-car', 'alt' => 'ถนนในหมู่บ้านแม่กำปอง อำเภอแม่ออน จังหวัดเชียงใหม่'],
     ['src' => 'routes/doi-inthanon-driver-chiangmai', 'alt' => 'การเดินทางไปดอยอินทนนท์ด้วยคนขับท้องถิ่น'],
     ['src' => 'vehicles/chiangmai-private-driver-van', 'alt' => 'รถตู้พร้อมคนขับสำหรับกลุ่มเที่ยวเชียงใหม่'],
 ];

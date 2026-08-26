@@ -36,9 +36,10 @@ require dirname(__DIR__) . '/components/header.php';
         <p><a href="<?= e(tel_href($business)) ?>" data-analytics="click_phone" data-button-position="contact"><?= e($business['phone']) ?></a></p>
         <p><a href="mailto:<?= e($business['email']) ?>"><?= e($business['email']) ?></a></p>
         <p><?= e($business['address']) ?></p>
+        <p>LINE Official <?= e($business['line_id']) ?></p>
         <p>
           <?php if ($lineReady): ?>
-            <a class="btn-line" href="<?= e($business['line_url']) ?>" data-analytics="click_line" data-button-position="contact" rel="noopener noreferrer">คุยผ่าน LINE</a>
+            <a class="btn-line" href="<?= e($business['line_url']) ?>" data-analytics="click_line" data-button-position="contact" target="_blank" rel="noopener noreferrer">คุยผ่าน LINE @papai</a>
           <?php else: ?>
             <span class="line-soon">LINE OA เร็ว ๆ นี้</span>
           <?php endif; ?>

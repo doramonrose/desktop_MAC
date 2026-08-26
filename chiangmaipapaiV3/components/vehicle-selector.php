@@ -24,7 +24,7 @@ declare(strict_types=1);
               <h3><?= e($vehicle['name']) ?></h3>
               <p><?= e($vehicle['best_for']) ?></p>
               <p class="muted"><?= e($vehicle['passengers']) ?> · <?= e($vehicle['luggage']) ?></p>
-              <p class="price-inline"><?= e(price_label('vehicles', $vehicle['id'], $prices)) ?></p>
+              <?= render_price('vehicles', $vehicle['id'], $prices) ?>
               <a class="text-link" href="<?= e($vehicle['url']) ?>" data-analytics="select_vehicle" data-vehicle="<?= e($vehicle['id']) ?>">ดูรายละเอียด <?= e($vehicle['name']) ?></a>
             </div>
           </article>

@@ -4,7 +4,7 @@ declare(strict_types=1);
 function schema_organization(array $business, array $app): array
 {
     $base = rtrim((string) $app['url'], '/');
-    return [
+    $org = [
         '@context' => 'https://schema.org',
         '@type' => 'Organization',
         'name' => $business['name'],
@@ -22,6 +22,11 @@ function schema_organization(array $business, array $app): array
             'addressCountry' => $business['address_schema']['addressCountry'],
         ],
     ];
+    $line = trim((string) ($business['line_url'] ?? ''));
+    if ($line !== '') {
+        $org['sameAs'] = [$line];
+    }
+    return $org;
 }
 
 function schema_local_business(array $business, array $app): array
@@ -33,6 +38,9 @@ function schema_local_business(array $business, array $app): array
         ['@type' => 'AdministrativeArea', 'name' => 'Chiang Mai'],
         ['@type' => 'AdministrativeArea', 'name' => 'Northern Thailand'],
     ];
+    if (empty($org['sameAs'])) {
+        unset($org['sameAs']);
+    }
     return $org;
 }
 

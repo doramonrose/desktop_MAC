@@ -18,6 +18,16 @@
   };
 
   document.addEventListener("click", (event) => {
+    const quotePrefill = event.target.closest("[data-quote-destination]");
+    if (quotePrefill) {
+      const dest = document.getElementById("destination");
+      const tripType = document.getElementById("trip_type");
+      const destValue = quotePrefill.getAttribute("data-quote-destination") || "";
+      const tripValue = quotePrefill.getAttribute("data-quote-trip") || "";
+      if (dest && destValue) dest.value = destValue;
+      if (tripType && tripValue) tripType.value = tripValue;
+    }
+
     const target = event.target.closest("[data-analytics]");
     if (!target) return;
     const name = target.getAttribute("data-analytics");
@@ -85,6 +95,12 @@
       "รบกวนช่วยตรวจสอบคิวและแนะนำราคาให้ด้วยครับ/ค่ะ",
     ].join("\n");
 
+    const lineId = quoteForm.getAttribute("data-line-id") || "";
+    const fallbackLineUrl = quoteForm.getAttribute("data-line-url") || "";
+    const lineMessageUrl = lineId
+      ? `https://line.me/R/oaMessage/${encodeURIComponent(lineId)}/?${encodeURIComponent(message)}`
+      : fallbackLineUrl;
+
     try {
       await navigator.clipboard.writeText(message);
     } catch (_err) {
@@ -96,11 +112,21 @@
       area.remove();
     }
 
+    const lineBtn = document.getElementById("quote-line-btn");
+    if (lineBtn && lineMessageUrl) {
+      lineBtn.href = lineMessageUrl;
+      lineBtn.classList.remove("hidden");
+    }
+
     const status = document.getElementById("quote-status");
     status?.classList.remove("hidden");
-    if (status) status.textContent = "คัดลอกข้อความขอราคาแล้ว โทรหาเจ้าหน้าที่เพื่อเช็กคิว หรือเปิด LINE เมื่อพร้อม";
-    document.getElementById("quote-line-btn")?.classList.remove("hidden");
-    track("submit_quote", { trip_type: data.trip_type, vehicle_type: data.vehicle_type });
+    if (lineMessageUrl) {
+      if (status) status.textContent = "เปิดแชท LINE Official @papai แล้ว กดส่งข้อความใน LINE เพื่อให้เจ้าหน้าที่ได้รับ หากแอปไม่เปิด ให้กดปุ่มคุยผ่าน LINE อีกครั้ง";
+      window.location.href = lineMessageUrl;
+    } else if (status) {
+      status.textContent = "คัดลอกข้อความขอราคาแล้ว โทรหาเจ้าหน้าที่เพื่อเช็กคิว";
+    }
+    track("submit_quote", { trip_type: data.trip_type, vehicle_type: data.vehicle_type, via: "line" });
   });
 
   document.querySelectorAll("[data-vehicle-selector]").forEach((root) => {

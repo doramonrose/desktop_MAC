@@ -6,14 +6,14 @@ declare(strict_types=1);
     <span>โทร</span>
     <small><?= e($business['phone']) ?></small>
   </a>
-  <a class="is-primary" href="<?= e($quoteHref) ?>" data-analytics="open_quote" data-button-position="mobile_bar">
+  <a<?= $lineReady ? '' : ' class="is-primary"' ?> href="<?= e($quoteHref) ?>" data-analytics="open_quote" data-button-position="mobile_bar">
     <span>เช็กคิว</span>
     <small>ขอราคา</small>
   </a>
   <?php if ($lineReady): ?>
-    <a href="<?= e($business['line_url']) ?>" data-analytics="click_line" data-button-position="mobile_bar" rel="noopener noreferrer">
+    <a class="is-primary" href="<?= e($business['line_url']) ?>" data-analytics="click_line" data-button-position="mobile_bar" target="_blank" rel="noopener noreferrer">
       <span>LINE</span>
-      <small>คุยผ่าน LINE</small>
+      <small>@papai</small>
     </a>
   <?php else: ?>
     <span class="is-soon">

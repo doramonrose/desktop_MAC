@@ -9,6 +9,7 @@ $seo = require __DIR__ . '/config/seo.php';
 $routes = require __DIR__ . '/config/routes.php';
 $vehiclesConfig = require __DIR__ . '/config/vehicles.php';
 $prices = require __DIR__ . '/config/prices.php';
+$trips = require __DIR__ . '/config/trips.php';
 $social = require __DIR__ . '/config/social.php';
 $content = require __DIR__ . '/config/content.php';
 
