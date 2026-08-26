@@ -1,0 +1,20 @@
+# Hosting / ops noise
+logs/
+stats/
+public_ftp/
+.htpasswd/
+cgi-bin/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Secrets / local
+.env
+.env.*
+*.pem
+*.key
+credentials*
