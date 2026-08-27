@@ -16,7 +16,6 @@ declare(strict_types=1);
                 'height' => '400',
                 'sizes' => '(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw',
             ]) ?>
-            <?= render_price_badge('vehicles', $vehicle['id'], $prices) ?>
           </div>
           <div class="photo-card-body">
             <h3><?= e($vehicle['name']) ?></h3>
@@ -33,7 +32,6 @@ declare(strict_types=1);
               'height' => '400',
               'sizes' => '(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw',
           ]) ?>
-          <?= render_price_badge('trips', 'airport', $prices) ?>
         </div>
         <div class="photo-card-body">
           <h3>รับส่งสนามบิน</h3>

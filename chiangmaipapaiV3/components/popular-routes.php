@@ -12,7 +12,6 @@ declare(strict_types=1);
         <article class="route-card">
           <div class="route-card-media">
             <?= picture_tag($route['image'], $route['alt'], ['width' => '640', 'height' => '400', 'sizes' => '(min-width: 768px) 30vw, 100vw']) ?>
-            <?= render_price_badge('destinations', $route['price_id'], $prices) ?>
           </div>
           <div class="route-card-body">
             <h3><?= e($route['name']) ?></h3>

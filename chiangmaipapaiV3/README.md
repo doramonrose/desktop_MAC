@@ -18,12 +18,15 @@ php -S localhost:8080 router.php
 
 ## Deploy
 
-1. Upload this folder to the document root.
+Upload the site to the document root of chiangmaipapai.com (`public_html`).
+
+1. Use `chiangmaipapaiV3-server.zip` (no `node_modules`).
 2. PHP >= 8.2
-3. Apache: `.htaccess` is included (HTTPS, security headers, `/sitemap.xml` → `sitemap.php`, 404).
+3. Apache: `.htaccess` is included (`DirectoryIndex index.php`, HTTPS, `/sitemap.xml` → `sitemap.php`, 404).
 4. Nginx: map `error_page 404 /404.php;` and `rewrite ^/sitemap.xml$ /sitemap.php last;`
-5. Do not upload `node_modules/`.
-6. Fill LINE and analytics in `config/business.php` when they exist. Leave LINE empty until the real OA URL is available.
+5. Do not upload `node_modules/`, `package.json`, or `router.php`.
+6. Delete any test `index.html` on the server. Apache serves `index.html` before `index.php`.
+7. LINE Official is `@papai` in `config/business.php`.
 
 ## Config
 
