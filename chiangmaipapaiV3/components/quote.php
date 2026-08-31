@@ -62,11 +62,11 @@ $quoteLead = $content['how_quote']['lead'];
       <div class="quote-actions">
         <button type="submit" class="btn-primary" data-analytics="submit_quote"><?= e($content['how_quote']['button']) ?></button>
         <?php if ($lineReady): ?>
-          <a id="quote-line-btn" class="btn-line" href="<?= e($business['line_url']) ?>" target="_blank" rel="noopener noreferrer" data-analytics="click_line" data-button-position="quick_quote">คุยผ่าน LINE @papai</a>
+          <a id="quote-line-btn" class="btn-line" href="<?= e($business['line_url']) ?>" target="_blank" rel="noopener noreferrer" data-analytics="click_line" data-button-position="quick_quote">คุยผ่าน LINE <?= e($business['line_id']) ?></a>
         <?php endif; ?>
       </div>
       <p id="quote-status" class="quote-status hidden" role="status" aria-live="polite"></p>
-      <p class="fine-print">ยังไม่ใช่การจอง ข้อความจะเปิดในแชท LINE @papai ให้กดส่ง จากนั้นเจ้าหน้าที่จะยืนยันคิวและยอด</p>
+      <p class="fine-print">ยังไม่ใช่การจอง ข้อความจะเปิดในแชท LINE <?= e($business['line_id']) ?> ให้กดส่ง จากนั้นเจ้าหน้าที่จะยืนยันคิวและยอด</p>
     </form>
   </div>
 </section>

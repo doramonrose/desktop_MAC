@@ -121,7 +121,7 @@
     const status = document.getElementById("quote-status");
     status?.classList.remove("hidden");
     if (lineMessageUrl) {
-      if (status) status.textContent = "เปิดแชท LINE Official @papai แล้ว กดส่งข้อความใน LINE เพื่อให้เจ้าหน้าที่ได้รับ หากแอปไม่เปิด ให้กดปุ่มคุยผ่าน LINE อีกครั้ง";
+      if (status) status.textContent = `เปิดแชท LINE Official ${lineId || "@553jixof"} แล้ว กดส่งข้อความใน LINE เพื่อให้เจ้าหน้าที่ได้รับ หากแอปไม่เปิด ให้กดปุ่มคุยผ่าน LINE อีกครั้ง`;
       window.location.href = lineMessageUrl;
     } else if (status) {
       status.textContent = "คัดลอกข้อความขอราคาแล้ว โทรหาเจ้าหน้าที่เพื่อเช็กคิว";

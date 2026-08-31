@@ -26,7 +26,7 @@ Upload the site to the document root of chiangmaipapai.com (`public_html`).
 4. Nginx: map `error_page 404 /404.php;` and `rewrite ^/sitemap.xml$ /sitemap.php last;`
 5. Do not upload `node_modules/`, `package.json`, or `router.php`.
 6. Delete any test `index.html` on the server. Apache serves `index.html` before `index.php`.
-7. LINE Official is `@papai` in `config/business.php`.
+7. LINE Official is `@553jixof` in `config/business.php`.
 
 ## Config
 

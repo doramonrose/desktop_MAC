@@ -39,7 +39,7 @@ require dirname(__DIR__) . '/components/header.php';
         <p>LINE Official <?= e($business['line_id']) ?></p>
         <p>
           <?php if ($lineReady): ?>
-            <a class="btn-line" href="<?= e($business['line_url']) ?>" data-analytics="click_line" data-button-position="contact" target="_blank" rel="noopener noreferrer">คุยผ่าน LINE @papai</a>
+            <a class="btn-line" href="<?= e($business['line_url']) ?>" data-analytics="click_line" data-button-position="contact" target="_blank" rel="noopener noreferrer">คุยผ่าน LINE <?= e($business['line_id']) ?></a>
           <?php else: ?>
             <span class="line-soon">LINE OA เร็ว ๆ นี้</span>
           <?php endif; ?>

@@ -13,7 +13,7 @@ declare(strict_types=1);
   <?php if ($lineReady): ?>
     <a class="is-primary" href="<?= e($business['line_url']) ?>" data-analytics="click_line" data-button-position="mobile_bar" target="_blank" rel="noopener noreferrer">
       <span>LINE</span>
-      <small>@papai</small>
+      <small><?= e($business['line_id']) ?></small>
     </a>
   <?php else: ?>
     <span class="is-soon">

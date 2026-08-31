@@ -11,7 +11,7 @@ $hero = $content['hero'];
       <div class="hero-cta">
         <a class="btn-primary" href="#quick-quote" data-analytics="open_quote" data-button-position="hero"><?= e($hero['cta']) ?></a>
         <?php if ($lineReady): ?>
-          <a class="btn-line" href="<?= e($business['line_url']) ?>" data-analytics="click_line" data-button-position="hero" target="_blank" rel="noopener noreferrer">คุยผ่าน LINE @papai</a>
+          <a class="btn-line" href="<?= e($business['line_url']) ?>" data-analytics="click_line" data-button-position="hero" target="_blank" rel="noopener noreferrer">คุยผ่าน LINE <?= e($business['line_id']) ?></a>
         <?php endif; ?>
         <a class="btn-navy" href="<?= e(tel_href($business)) ?>" data-analytics="click_phone" data-button-position="hero"><?= e($hero['cta_secondary']) ?></a>
       </div>

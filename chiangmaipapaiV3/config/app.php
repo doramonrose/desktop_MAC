@@ -8,5 +8,5 @@ return [
     'url' => 'https://chiangmaipapai.com',
     'timezone' => 'Asia/Bangkok',
     'locale' => 'th',
-    'asset_version' => '20260826l',
+    'asset_version' => '20260831a',
 ];
